@@ -22,6 +22,9 @@ public class RankCalculator: IRankCalculator
            && valueGroups.Any(g => g.Count() == 2))
             return (HandRank.FullHouse, sortedValues);
         
+        if(suitCount == 1)
+            return (HandRank.Flush, sortedValues);
+        
         return (HandRank.HighCard, sortedValues);
     }
 
