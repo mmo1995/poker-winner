@@ -26,6 +26,25 @@ public class RankCalculatorTests
         //Assert
         Assert.That(rank, Is.EqualTo(HandRank.StraightFlush));
     }
+    [Test]
+    public void Test_Calculates_StraightFlush_Special_Ass_AsOne()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandStraightFlush = new CardHand([
+                new Card(CardSuit.C, CardValue.A),
+                new Card(CardSuit.C, CardValue.Two),
+                new Card(CardSuit.C, CardValue.Three),
+                new Card(CardSuit.C, CardValue.Four),
+                new Card(CardSuit.C, CardValue.Five)
+            ]
+        );
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandStraightFlush);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.StraightFlush));
+    }
     
     [Test]
     public void Test_Calculates_FourOfAKind()
@@ -94,6 +113,24 @@ public class RankCalculatorTests
             new Card(CardSuit.H, CardValue.Seven),
             new Card(CardSuit.S, CardValue.Eight),
             new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandStraight);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.Straight));
+    }
+    [Test]
+    public void Test_Calculates_Straight_Special_Ass_AsOne()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandStraight = new CardHand([
+            new Card(CardSuit.C, CardValue.A),
+            new Card(CardSuit.D, CardValue.Two),
+            new Card(CardSuit.H, CardValue.Three),
+            new Card(CardSuit.S, CardValue.Four),
+            new Card(CardSuit.C, CardValue.Five)
         ]);
         
         //Act
