@@ -14,7 +14,7 @@ public class RankCalculator: IRankCalculator
         if(IsStraightRank(sortedValues) && suitCount == 1)
             return (HandRank.StraightFlush, sortedValues);
         
-        if (GetSameValuesCount(valueGroups) == 4)
+        if(GetSameValuesCount(valueGroups) == 4)
             return (HandRank.FourOfAKind, sortedValues);
         
         if(valueGroups.Count == 2 
@@ -26,6 +26,9 @@ public class RankCalculator: IRankCalculator
             return (HandRank.Flush, sortedValues);
         if(IsStraightRank(sortedValues))
             return (HandRank.Straight, sortedValues);
+        
+        if(GetSameValuesCount(valueGroups) == 3)
+            return (HandRank.ThreeOfAKind, sortedValues);
         
         return (HandRank.HighCard, sortedValues);
     }
