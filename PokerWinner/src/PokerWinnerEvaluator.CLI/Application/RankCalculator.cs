@@ -30,6 +30,10 @@ public class RankCalculator: IRankCalculator
         if(GetSameValuesCount(valueGroups) == 3)
             return (HandRank.ThreeOfAKind, sortedValues);
         
+        if(valueGroups.Count == 3 
+           && valueGroups.Count(g => g.Count() == 2) == 2)
+            return (HandRank.TwoPairs, sortedValues);
+        
         return (HandRank.HighCard, sortedValues);
     }
 
