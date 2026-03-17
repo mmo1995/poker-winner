@@ -12,6 +12,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWinnerEvaluator.Spectr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWinnerEvaluator.Tests", "tests\PokerWinnerEvaluator.Tests\PokerWinnerEvaluator.Tests.csproj", "{94CED3B3-3471-4E6B-8DB6-0C0D683A4F39}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{353B33AC-1B59-469C-9C56-2A8144E95454}"
+	ProjectSection(SolutionItems) = preProject
+		assets\poker-winner-design.drawio.png = assets\poker-winner-design.drawio.png
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
