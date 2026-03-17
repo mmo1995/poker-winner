@@ -64,4 +64,22 @@ public class RankCalculatorTests
         //Assert
         Assert.That(rank, Is.EqualTo(HandRank.FullHouse));
     }
+    [Test]
+    public void Test_Calculates_Flush()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandFlush = new CardHand([
+            new Card(CardSuit.S, CardValue.Two),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Nine)
+        ]);
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandFlush);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.Flush));
+    }
 }
