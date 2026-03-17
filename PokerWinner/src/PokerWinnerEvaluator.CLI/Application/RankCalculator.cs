@@ -10,6 +10,7 @@ public class RankCalculator: IRankCalculator
         var sortedValues = hand.Cards.Select(card => card.Value).OrderByDescending(v => v).ToList();
         var suitCount = hand.Cards.Select(card => card.Suit).Distinct().Count();
         var valueGroups = hand.Cards.Select(card => card.Value).GroupBy(v => v).ToList();
+        var pairCount = valueGroups.Count(g => g.Count() == 2);
         
         if(IsStraightRank(sortedValues) && suitCount == 1)
             return (HandRank.StraightFlush, sortedValues);
@@ -29,12 +30,13 @@ public class RankCalculator: IRankCalculator
         
         if(GetSameValuesCount(valueGroups) == 3)
             return (HandRank.ThreeOfAKind, sortedValues);
-        
-        if(valueGroups.Count == 3 
-           && valueGroups.Count(g => g.Count() == 2) == 2)
-            return (HandRank.TwoPairs, sortedValues);
-        
-        return (HandRank.HighCard, sortedValues);
+
+        return valueGroups.Count switch
+        {
+            3 when pairCount == 2 => (HandRank.TwoPairs, sortedValues),
+            4 when pairCount == 1 => (HandRank.Pair, sortedValues),
+            _ => (HandRank.HighCard, sortedValues)
+        };
     }
 
     private static bool IsStraightRank(List<CardValue> sortedValues)
