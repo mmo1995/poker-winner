@@ -9,12 +9,18 @@ public class RankCalculator: IRankCalculator
     {
         var sortedValues = hand.Cards.Select(card => card.Value).OrderByDescending(v => v).ToList();
         var suitCount = hand.Cards.Select(card => card.Suit).Distinct().Count();
+        var valueGroups = hand.Cards.Select(card => card.Value).GroupBy(v => v).ToList();
         
         if(IsStraightRank(sortedValues) && suitCount == 1)
             return (HandRank.StraightFlush, sortedValues);
         
-        if (GetSameValuesCount(sortedValues) == 4)
+        if (GetSameValuesCount(valueGroups) == 4)
             return (HandRank.FourOfAKind, sortedValues);
+        
+        if(valueGroups.Count == 2 
+           && valueGroups.Any(g => g.Count() == 3) 
+           && valueGroups.Any(g => g.Count() == 2))
+            return (HandRank.FullHouse, sortedValues);
         
         return (HandRank.HighCard, sortedValues);
     }
@@ -28,5 +34,5 @@ public class RankCalculator: IRankCalculator
         }
         return true;
     }
-    private static int GetSameValuesCount(List<CardValue> values) => values.GroupBy(v => v).Max(g => g.Count());
+    private static int GetSameValuesCount(IEnumerable<IGrouping<CardValue, CardValue>> valueGroups) => valueGroups.Max(g => g.Count());
 }
