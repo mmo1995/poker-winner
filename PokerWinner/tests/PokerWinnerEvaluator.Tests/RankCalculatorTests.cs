@@ -26,4 +26,23 @@ public class RankCalculatorTests
         //Assert
         Assert.That(rank, Is.EqualTo(HandRank.StraightFlush));
     }
+    
+    [Test]
+    public void Test_Calculates_FourOfAKind()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandFourOfAKind = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandFourOfAKind);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.FourOfAKind));
+    }
 }
