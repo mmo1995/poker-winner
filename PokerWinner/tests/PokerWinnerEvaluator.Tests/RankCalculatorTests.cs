@@ -45,4 +45,23 @@ public class RankCalculatorTests
         //Assert
         Assert.That(rank, Is.EqualTo(HandRank.FourOfAKind));
     }
+    
+    [Test]
+    public void Test_Calculates_FullHouse()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandFullHouse = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandFullHouse);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.FullHouse));
+    }
 }
