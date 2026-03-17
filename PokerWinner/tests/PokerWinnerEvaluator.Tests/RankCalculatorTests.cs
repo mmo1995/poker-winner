@@ -157,4 +157,23 @@ public class RankCalculatorTests
         //Assert
         Assert.That(rank, Is.EqualTo(HandRank.ThreeOfAKind));
     }
+    
+    [Test]
+    public void Test_Calculates_TwoPairs()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandTwoPairs = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Two)
+        ]);
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandTwoPairs);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.TwoPairs));
+    }
 }
