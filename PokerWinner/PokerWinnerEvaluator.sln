@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWinnerEvaluator.CLI", "PokerWinnerEvaluator.CLI\PokerWinnerEvaluator.CLI.csproj", "{8F0CCBC0-6EB5-4FC3-9D58-901A56A31A42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWinnerEvaluator.Tests", "PokerWinnerEvaluator.Tests\PokerWinnerEvaluator.Tests.csproj", "{60C743D6-6376-4E9D-A267-64F70E626D17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{8F0CCBC0-6EB5-4FC3-9D58-901A56A31A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F0CCBC0-6EB5-4FC3-9D58-901A56A31A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F0CCBC0-6EB5-4FC3-9D58-901A56A31A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60C743D6-6376-4E9D-A267-64F70E626D17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60C743D6-6376-4E9D-A267-64F70E626D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60C743D6-6376-4E9D-A267-64F70E626D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60C743D6-6376-4E9D-A267-64F70E626D17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
