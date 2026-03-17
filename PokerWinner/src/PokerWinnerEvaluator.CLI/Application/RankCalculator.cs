@@ -24,6 +24,8 @@ public class RankCalculator: IRankCalculator
         
         if(suitCount == 1)
             return (HandRank.Flush, sortedValues);
+        if(IsStraightRank(sortedValues))
+            return (HandRank.Straight, sortedValues);
         
         return (HandRank.HighCard, sortedValues);
     }
