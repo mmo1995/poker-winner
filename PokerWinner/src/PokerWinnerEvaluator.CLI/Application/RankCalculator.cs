@@ -32,6 +32,12 @@ public class RankCalculator: IRankCalculator
 
     private static bool IsStraightRank(List<CardValue> sortedValues)
     {
+        if(sortedValues.Count != 5)
+            return false;
+        
+        // A-2-3-4-5 special case
+        if(sortedValues.SequenceEqual([CardValue.A, CardValue.Five, CardValue.Four, CardValue.Three, CardValue.Two]))
+            return true;
         for (var i = 0; i < sortedValues.Count - 1; i++)
         {
             if (sortedValues[i] - sortedValues[i + 1] != 1)
