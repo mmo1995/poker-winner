@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWinnerEvaluator.CLI", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWinnerEvaluator.Tests", "PokerWinnerEvaluator.Tests\PokerWinnerEvaluator.Tests.csproj", "{60C743D6-6376-4E9D-A267-64F70E626D17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerWinnerEvaluator.Spectre.UI", "PokerWinnerEvaluator.Spectre.UI\PokerWinnerEvaluator.Spectre.UI.csproj", "{92D844F2-74AA-4F1E-9305-07025338D295}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{60C743D6-6376-4E9D-A267-64F70E626D17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60C743D6-6376-4E9D-A267-64F70E626D17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60C743D6-6376-4E9D-A267-64F70E626D17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92D844F2-74AA-4F1E-9305-07025338D295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92D844F2-74AA-4F1E-9305-07025338D295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92D844F2-74AA-4F1E-9305-07025338D295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92D844F2-74AA-4F1E-9305-07025338D295}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
