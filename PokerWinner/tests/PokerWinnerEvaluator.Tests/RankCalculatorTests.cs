@@ -195,4 +195,23 @@ public class RankCalculatorTests
         //Assert
         Assert.That(rank, Is.EqualTo(HandRank.Pair));
     }
+    
+    [Test]
+    public void Test_Calculates_HighCard()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandHighCard = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Q),
+            new Card(CardSuit.H, CardValue.Three),
+            new Card(CardSuit.S, CardValue.Seven),
+            new Card(CardSuit.C, CardValue.Two)
+        ]);
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandHighCard);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.HighCard));
+    }
 }
