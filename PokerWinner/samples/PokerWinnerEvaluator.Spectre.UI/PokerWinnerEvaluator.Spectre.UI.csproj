@@ -5,7 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>PokerWinnerEvaluator.UI</RootNamespace>
+    <RootNamespace>PokerWinnerEvaluator.Spectre.UI</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
