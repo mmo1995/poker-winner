@@ -138,4 +138,23 @@ public class RankCalculatorTests
         //Assert
         Assert.That(rank, Is.EqualTo(HandRank.Straight));
     }
+    
+    [Test]
+    public void Test_Calculates_ThreeOfAKind()
+    {
+        //Arrange
+        _rankCalculator = new RankCalculator();
+        var cardHandThreeOfAKind = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Three),
+            new Card(CardSuit.S, CardValue.Two),
+            new Card(CardSuit.C, CardValue.Five)
+        ]);
+        
+        //Act
+        var (rank, _) = _rankCalculator.CalculateRank(cardHandThreeOfAKind);
+        //Assert
+        Assert.That(rank, Is.EqualTo(HandRank.ThreeOfAKind));
+    }
 }
