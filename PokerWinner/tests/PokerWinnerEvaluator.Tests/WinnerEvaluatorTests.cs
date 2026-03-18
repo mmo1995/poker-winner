@@ -13,7 +13,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_StraightFlush()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlushLowValue = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -23,11 +23,11 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandStraightFlushHighValue = new CardHand([
-                new Card(CardSuit.C, CardValue.Eight),
-                new Card(CardSuit.C, CardValue.Nine),
-                new Card(CardSuit.C, CardValue.Ten),
-                new Card(CardSuit.C, CardValue.J),
-                new Card(CardSuit.C, CardValue.Q)
+                new Card(CardSuit.S, CardValue.Eight),
+                new Card(CardSuit.S, CardValue.Nine),
+                new Card(CardSuit.S, CardValue.Ten),
+                new Card(CardSuit.S, CardValue.J),
+                new Card(CardSuit.S, CardValue.Q)
             ]
         );
      
@@ -42,7 +42,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_FourOfAKind()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -52,11 +52,11 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandFourOfAKind = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.C, CardValue.Nine)
+            new Card(CardSuit.C, CardValue.Four),
+            new Card(CardSuit.D, CardValue.Four),
+            new Card(CardSuit.H, CardValue.Four),
+            new Card(CardSuit.S, CardValue.Four),
+            new Card(CardSuit.C, CardValue.Ten)
         ]);
      
         //Act
@@ -70,7 +70,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_FullHouse()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -80,11 +80,11 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandFullHouse = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Five),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.C, CardValue.Nine)
+            new Card(CardSuit.H, CardValue.Nine)
         ]);
      
         //Act
@@ -98,7 +98,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_Flush()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -126,7 +126,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_Straight()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -136,11 +136,11 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandStraight = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
             new Card(CardSuit.D, CardValue.Six),
             new Card(CardSuit.H, CardValue.Seven),
             new Card(CardSuit.S, CardValue.Eight),
-            new Card(CardSuit.C, CardValue.Nine)
+            new Card(CardSuit.D, CardValue.Nine)
         ]);
      
         //Act
@@ -154,7 +154,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_ThreeOfAKind()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -164,11 +164,11 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandThreeOfAKind = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Four),
+            new Card(CardSuit.D, CardValue.Four),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.S, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Four)
         ]);
      
         //Act
@@ -182,7 +182,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_TwoPairs()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -192,7 +192,7 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandTwoPairs = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Nine),
             new Card(CardSuit.S, CardValue.Nine),
@@ -209,7 +209,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_Pair()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -219,7 +219,7 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandPair = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Five),
@@ -237,7 +237,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_StraightFlush_vs_HighCard()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightFlush = new CardHand([
                 new Card(CardSuit.C, CardValue.Five),
                 new Card(CardSuit.C, CardValue.Six),
@@ -247,7 +247,7 @@ public class WinnerEvaluatorTests
             ]
         );
         var cardHandHighCard = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Seven),
@@ -266,10 +266,10 @@ public class WinnerEvaluatorTests
     #region FourOfAKind
     
     [Test]
-    public void Test_GetWinner_FourOfAKind_vs_FourOfAKind_different_quad()
+    public void Test_GetWinner_FourOfAKind_vs_FourOfAKind()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKindLow = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -291,39 +291,12 @@ public class WinnerEvaluatorTests
         //Assert
         Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKindHigh));
     }
-    
-    [Test]
-    public void Test_GetWinner_FourOfAKind_vs_FourOfAKind_same_quad()
-    {
-        //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
-        var cardHandFourOfAKindHighKicker = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.C, CardValue.A)
-        ]);
-        var cardHandFourOfAKindLowKicker = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.C, CardValue.Nine)
-        ]);
-     
-        //Act
-        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFourOfAKindHighKicker, cardHandFourOfAKindLowKicker);
-
-        //Assert
-        Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKindHighKicker));
-    }
 
     [Test]
     public void Test_GetWinner_FourOfAKind_vs_FullHouse()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -332,11 +305,11 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandFullHouse = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Six),
+            new Card(CardSuit.H, CardValue.Six),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.C, CardValue.Nine)
+            new Card(CardSuit.H, CardValue.Nine)
         ]);
      
         //Act
@@ -350,7 +323,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FourOfAKind_vs_Flush()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -360,7 +333,7 @@ public class WinnerEvaluatorTests
         ]);
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Six),
             new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
             new Card(CardSuit.S, CardValue.Seven)
@@ -377,7 +350,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FourOfAKind_vs_Straight()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -386,11 +359,11 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandStraight = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Six),
             new Card(CardSuit.H, CardValue.Seven),
             new Card(CardSuit.S, CardValue.Eight),
-            new Card(CardSuit.C, CardValue.Nine)
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Ten)
         ]);
      
         //Act
@@ -404,7 +377,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FourOfAKind_vs_ThreeOfAKind()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -413,11 +386,11 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandThreeOfAKind = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Six),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.S, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Six)
         ]);
      
         //Act
@@ -431,7 +404,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FourOfAKind_vs_TwoPairs()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -440,8 +413,8 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandTwoPairs = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Six),
             new Card(CardSuit.H, CardValue.Nine),
             new Card(CardSuit.S, CardValue.Nine),
             new Card(CardSuit.C, CardValue.Two)
@@ -458,7 +431,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FourOfAKind_vs_Pair()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -467,10 +440,10 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandPair = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Four),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.C, CardValue.Two)
         ]);
      
@@ -485,7 +458,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FourOfAKind_vs_HighCard()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFourOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -494,7 +467,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandHighCard = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.C, CardValue.A),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Seven),
@@ -513,10 +486,10 @@ public class WinnerEvaluatorTests
     #region FullHouse
     
     [Test]
-    public void Test_GetWinner_FullHouse_vs_FullHouse_different_triplet()
+    public void Test_GetWinner_FullHouse_vs_FullHouse()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFullHouseHigh = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -526,37 +499,10 @@ public class WinnerEvaluatorTests
         ]);
         var cardHandFullHouseLow = new CardHand([
             new Card(CardSuit.C, CardValue.Four),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.D, CardValue.A),
+            new Card(CardSuit.H, CardValue.A),
             new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.H, CardValue.Four)
-        ]);
-     
-        //Act
-        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFullHouseHigh, cardHandFullHouseLow);
-
-        //Assert
-        Assert.That(winningCardHand, Is.EqualTo(cardHandFullHouseHigh));
-    }
-    
-    [Test]
-    public void Test_GetWinner_FullHouse_vs_FullHouse_same_triplet()
-    {
-        //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
-        var cardHandFullHouseHigh = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.C, CardValue.Nine)
-        ]);
-        var cardHandFullHouseLow = new CardHand([
-            new Card(CardSuit.C, CardValue.Four),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Four),
-            new Card(CardSuit.C, CardValue.Five)
         ]);
      
         //Act
@@ -570,7 +516,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FullHouse_vs_Flush()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFullHouse = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -582,7 +528,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
             new Card(CardSuit.S, CardValue.Four),
-            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Eight),
             new Card(CardSuit.S, CardValue.Seven)
         ]);
      
@@ -597,16 +543,16 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FullHouse_vs_Straight()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFullHouse = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Five),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.C, CardValue.Nine)
+            new Card(CardSuit.H, CardValue.Nine)
         ]);
         var cardHandStraight = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
             new Card(CardSuit.D, CardValue.Six),
             new Card(CardSuit.H, CardValue.Seven),
             new Card(CardSuit.S, CardValue.Eight),
@@ -624,7 +570,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FullHouse_vs_ThreeOfAKind()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFullHouse = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -633,11 +579,11 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandThreeOfAKind = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Six),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.S, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Six)
         ]);
      
         //Act
@@ -651,7 +597,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FullHouse_vs_TwoPairs()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFullHouse = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -660,10 +606,10 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandTwoPairs = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
-            new Card(CardSuit.D, CardValue.Five),
-            new Card(CardSuit.H, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Six),
+            new Card(CardSuit.H, CardValue.Four),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.C, CardValue.Two)
         ]);
      
@@ -678,7 +624,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FullHouse_vs_Pair()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFullHouse = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -687,10 +633,10 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandPair = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Six),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Six),
             new Card(CardSuit.C, CardValue.Two)
         ]);
      
@@ -705,7 +651,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_FullHouse_vs_HighCard()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFullHouse = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
@@ -714,7 +660,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Nine)
         ]);
         var cardHandHighCard = new CardHand([
-            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.C, CardValue.A),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Seven),
@@ -736,7 +682,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_Flush_vs_Straight()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
@@ -763,10 +709,10 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_Flush_vs_ThreeOfAKind()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Six),
             new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
             new Card(CardSuit.S, CardValue.Seven)
@@ -775,7 +721,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Three),
-            new Card(CardSuit.S, CardValue.Two),
+            new Card(CardSuit.H, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five)
         ]);
      
@@ -790,7 +736,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_Flush_vs_TwoPair()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
@@ -802,7 +748,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Nine),
             new Card(CardSuit.C, CardValue.Two)
         ]);
      
@@ -817,7 +763,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_Flush_vs_Pair()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
@@ -829,7 +775,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
             new Card(CardSuit.C, CardValue.Two)
         ]);
      
@@ -844,7 +790,7 @@ public class WinnerEvaluatorTests
     public void Test_GetWinner_Flush_vs_HighCard()
     {
         //Arrange
-        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
@@ -856,7 +802,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Q),
             new Card(CardSuit.H, CardValue.Three),
-            new Card(CardSuit.S, CardValue.Seven),
+            new Card(CardSuit.S, CardValue.Eight),
             new Card(CardSuit.C, CardValue.Two)
         ]);
      
