@@ -264,6 +264,33 @@ public class WinnerEvaluatorTests
     #endregion StraightFlush
 
     #region FourOfAKind
+    
+    [Test]
+    public void Test_GetWinner_FourOfAKind_vs_FourOfAKind_different_quad()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        var cardHandFourOfAKindLow = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.C, CardValue.A)
+        ]);
+        var cardHandFourOfAKindHigh = new CardHand([
+            new Card(CardSuit.C, CardValue.Seven),
+            new Card(CardSuit.D, CardValue.Seven),
+            new Card(CardSuit.H, CardValue.Seven),
+            new Card(CardSuit.S, CardValue.Seven),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFourOfAKindLow, cardHandFourOfAKindHigh);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKindHigh));
+    }
 
     [Test]
     public void Test_GetWinner_FourOfAKind_vs_FullHouse()
