@@ -38,7 +38,13 @@ public class WinnerEvaluator(IRankCalculator rankCalculator): IWinnerEvaluator
                 var fullHouseTripletHand1 = hand1SortedValues.GroupBy(v => v).First(g => g.Count() == 3).Key;
                 var fullHouseTripletHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 3).Key;
 
-                return fullHouseTripletHand1 > fullHouseTripletHand2 ? hand1 : hand2;
+                if (fullHouseTripletHand1 != fullHouseTripletHand2)
+                    return fullHouseTripletHand1 > fullHouseTripletHand2 ? hand1 : hand2;
+
+                var fullHousePairHand1 = hand1SortedValues.GroupBy(v => v).First(g => g.Count() == 2).Key;
+                var fullHousePairHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 2).Key;
+
+                return fullHousePairHand1 > fullHousePairHand2 ? hand1 : hand2;
             }
             default:
                 return null;
