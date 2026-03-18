@@ -53,6 +53,35 @@ public class WinnerEvaluator(IRankCalculator rankCalculator, ICardHandPairValida
                 return hand1SortedValues[0] > hand2SortedValues[0] ? hand1 : hand2;
             case HandRank.ThreeOfAKind:
                 return hand1SortedValues[0] > hand2SortedValues[0] ? hand1 : hand2;
+            case HandRank.TwoPairs:
+            {
+                var hand1Pairs = hand1SortedValues.GroupBy(v => v)
+                    .Where(g => g.Count() == 2)
+                    .Select(g => g.Key)
+                    .OrderByDescending(v => v)
+                    .ToList();
+
+                var hand2Pairs = hand2SortedValues.GroupBy(v => v)
+                    .Where(g => g.Count() == 2)
+                    .Select(g => g.Key)
+                    .OrderByDescending(v => v)
+                    .ToList();
+
+                if (hand1Pairs[0] != hand2Pairs[0])
+                    return hand1Pairs[0] > hand2Pairs[0] ? hand1 : hand2;
+
+                if (hand1Pairs[1] != hand2Pairs[1])
+                    return hand1Pairs[1] > hand2Pairs[1] ? hand1 : hand2;
+
+                var hand1Kicker = hand1SortedValues.First(v => !hand1Pairs.Contains(v));
+                var hand2Kicker = hand2SortedValues.First(v => !hand2Pairs.Contains(v));
+
+                if (hand1Kicker == hand2Kicker)
+                    return null;
+
+                return hand1Kicker > hand2Kicker ? hand1 : hand2;
+            }
+                
             default:
                 return null;
         }
