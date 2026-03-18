@@ -982,6 +982,35 @@ public class WinnerEvaluatorTests
     #endregion Straight
 
     #region ThreeOfAKind
+    
+    [Test]
+    public void Test_GetWinner_ThreeOfAKind_vs_ThreeOfAKind()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
+        
+        var cardHandThreeOfAKindHigh = new CardHand([
+            new Card(CardSuit.C, CardValue.Four),
+            new Card(CardSuit.D, CardValue.Four),
+            new Card(CardSuit.H, CardValue.Three),
+            new Card(CardSuit.H, CardValue.A),
+            new Card(CardSuit.S, CardValue.Four)
+        ]);
+        
+        var cardHandThreeOfAKindLow = new CardHand([
+            new Card(CardSuit.C, CardValue.Two),
+            new Card(CardSuit.D, CardValue.Six),
+            new Card(CardSuit.S, CardValue.Three),
+            new Card(CardSuit.H, CardValue.Two),
+            new Card(CardSuit.S, CardValue.Two)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandThreeOfAKindHigh, cardHandThreeOfAKindLow);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandThreeOfAKindHigh));
+    }
 
     [Test]
     public void Test_GetWinner_ThreeOfAKind_vs_TwoPairs()
