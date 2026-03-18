@@ -47,6 +47,10 @@ public class WinnerEvaluator(IRankCalculator rankCalculator, ICardHandPairValida
                 }
                 return null;
             }
+            case HandRank.Straight:
+                if(hand1SortedValues[0] == hand2SortedValues[0])
+                    return null;
+                return hand1SortedValues[0] > hand2SortedValues[0] ? hand1 : hand2;
             default:
                 return null;
         }

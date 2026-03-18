@@ -850,10 +850,10 @@ public class WinnerEvaluatorTests
         //Arrange
         _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
         var cardHandStraightHigh = new CardHand([
-            new Card(CardSuit.C, CardValue.Nine),
-            new Card(CardSuit.D, CardValue.Six),
-            new Card(CardSuit.H, CardValue.Seven),
-            new Card(CardSuit.S, CardValue.Eight),
+            new Card(CardSuit.D, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.S, CardValue.Seven),
+            new Card(CardSuit.H, CardValue.Eight),
             new Card(CardSuit.C, CardValue.Ten)
         ]);
         var cardHandStraightLow = new CardHand([
