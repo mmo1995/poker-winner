@@ -812,6 +812,33 @@ public class WinnerEvaluatorTests
         //Assert
         Assert.That(winningCardHand, Is.EqualTo(cardHandFlush));
     }
+    
+    [Test]
+    public void Test_GetWinner_Flush_vs_Pair()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        var cardHandFlush = new CardHand([
+            new Card(CardSuit.S, CardValue.Two),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Nine)
+        ]);
+        var cardHandPair = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Q),
+            new Card(CardSuit.H, CardValue.Three),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Two)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFlush, cardHandPair);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFlush));
+    }
 
     #endregion Flush
 }
