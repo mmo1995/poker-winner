@@ -592,6 +592,33 @@ public class WinnerEvaluatorTests
         //Assert
         Assert.That(winningCardHand, Is.EqualTo(cardHandFullHouse));
     }
+    
+    [Test]
+    public void Test_GetWinner_FullHouse_vs_TwoPairs()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        var cardHandFullHouse = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        var cardHandTwoPairs = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Two)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFullHouse, cardHandTwoPairs);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFullHouse));
+    }
 
     #endregion FullHouse
 }
