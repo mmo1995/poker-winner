@@ -871,5 +871,32 @@ public class WinnerEvaluatorTests
         Assert.That(winningCardHand, Is.EqualTo(cardHandStraight));
     }
     
+    [Test]
+    public void Test_GetWinner_Striaght_vs_TwoPairs()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
+        var cardHandStraight = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Six),
+            new Card(CardSuit.H, CardValue.Seven),
+            new Card(CardSuit.S, CardValue.Eight),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        var cardHandTwoPairs = new CardHand([
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Two)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandStraight, cardHandTwoPairs);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandStraight));
+    }
+    
     #endregion Straight
 }
