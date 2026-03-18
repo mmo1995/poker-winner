@@ -845,6 +845,33 @@ public class WinnerEvaluatorTests
     #region Straight
     
     [Test]
+    public void Test_GetWinner_Striaght_vs_Straight()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
+        var cardHandStraightHigh = new CardHand([
+            new Card(CardSuit.C, CardValue.Nine),
+            new Card(CardSuit.D, CardValue.Six),
+            new Card(CardSuit.H, CardValue.Seven),
+            new Card(CardSuit.S, CardValue.Eight),
+            new Card(CardSuit.C, CardValue.Ten)
+        ]);
+        var cardHandStraightLow = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Six),
+            new Card(CardSuit.H, CardValue.Seven),
+            new Card(CardSuit.S, CardValue.Eight),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandStraightLow, cardHandStraightHigh);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandStraightHigh));
+    }
+    
+    [Test]
     public void Test_GetWinner_Striaght_vs_ThreeOfAKind()
     {
         //Arrange
