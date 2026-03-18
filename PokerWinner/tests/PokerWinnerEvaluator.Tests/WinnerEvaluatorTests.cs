@@ -677,6 +677,33 @@ public class WinnerEvaluatorTests
     #endregion FullHouse
 
     #region Flush
+    
+    [Test]
+    public void Test_GetWinner_Flush_vs_Flush()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
+        var cardHandFlushHigh = new CardHand([
+            new Card(CardSuit.S, CardValue.A),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Seven)
+        ]);
+        var cardHandFlushLow = new CardHand([
+            new Card(CardSuit.H, CardValue.Two),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Four),
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.H, CardValue.Seven)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFlushLow, cardHandFlushHigh);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFlushHigh));
+    }
 
     [Test]
     public void Test_GetWinner_Flush_vs_Straight()
