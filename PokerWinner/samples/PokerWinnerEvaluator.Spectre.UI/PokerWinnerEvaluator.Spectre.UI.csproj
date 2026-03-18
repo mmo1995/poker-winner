@@ -11,5 +11,8 @@
   <ItemGroup>
     <PackageReference Include="Spectre.Console" Version="0.54.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PokerWinnerEvaluator.CLI\PokerWinnerEvaluator.CLI.csproj" />
+  </ItemGroup>
 
 </Project>
