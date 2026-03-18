@@ -8,6 +8,13 @@ public class CardHand(IEnumerable<Card> cards)
     
     private static List<Card> Validate(IEnumerable<Card> cards)
     {
-        throw new NotImplementedException();
+        var cardList = cards.ToList();
+
+        if (cardList.Count != 5)
+            throw new ArgumentException("A poker hand must contain exactly 5 cards.");
+
+        return cardList.Distinct().Count() != cardList.Count 
+            ? throw new ArgumentException("A poker hand cannot contain the same card twice.")
+            : cardList;
     }
 }
