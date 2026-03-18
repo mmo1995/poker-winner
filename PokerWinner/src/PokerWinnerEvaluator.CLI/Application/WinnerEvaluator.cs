@@ -20,6 +20,13 @@ public class WinnerEvaluator(IRankCalculator rankCalculator): IWinnerEvaluator
         {
             case HandRank.StraightFlush:
                 return hand1SortedValues[0] > hand2SortedValues[0] ? hand1 : hand2;
+            case HandRank.FourOfAKind:
+            {
+                var fourOfAKindHand1 = hand1SortedValues.GroupBy(v => v).First(g => g.Count() == 4).Key;
+                var fourOfAKindHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 4).Key;
+
+                return fourOfAKindHand1 > fourOfAKindHand2 ? hand1 : hand2;
+            }
             default:
                 return null;
         }
