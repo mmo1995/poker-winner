@@ -345,6 +345,33 @@ public class WinnerEvaluatorTests
         //Assert
         Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKind));
     }
+    
+    [Test]
+    public void Test_GetWinner_FourOfAKind_vs_TwoPairs()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        var cardHandFourOfAKind = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        var cardHandTwoPairs = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Two)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFourOfAKind, cardHandTwoPairs);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKind));
+    }
 
     #endregion FourOfAKind
 }
