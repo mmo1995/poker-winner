@@ -33,6 +33,13 @@ public class WinnerEvaluator(IRankCalculator rankCalculator): IWinnerEvaluator
 
                 return kickerHand1 > kickerHand2 ? hand1 : hand2;
             }
+            case HandRank.FullHouse:
+            {
+                var fullHouseTripletHand1 = hand1SortedValues.GroupBy(v => v).First(g => g.Count() == 3).Key;
+                var fullHouseTripletHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 3).Key;
+
+                return fullHouseTripletHand1 > fullHouseTripletHand2 ? hand1 : hand2;
+            }
             default:
                 return null;
         }
