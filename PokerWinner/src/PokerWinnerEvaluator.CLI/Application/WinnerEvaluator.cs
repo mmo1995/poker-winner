@@ -27,26 +27,14 @@ public class WinnerEvaluator(IRankCalculator rankCalculator, ICardHandPairValida
                 var fourOfAKindHand1 = hand1SortedValues.GroupBy(v => v).First(g => g.Count() == 4).Key;
                 var fourOfAKindHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 4).Key;
 
-                if (fourOfAKindHand1 != fourOfAKindHand2)
-                    return fourOfAKindHand1 > fourOfAKindHand2 ? hand1 : hand2;
-
-                var kickerHand1 = hand1SortedValues.First(v => v != fourOfAKindHand1);
-                var kickerHand2 = hand2SortedValues.First(v => v != fourOfAKindHand2);
-
-                return kickerHand1 > kickerHand2 ? hand1 : hand2;
+                return fourOfAKindHand1 > fourOfAKindHand2 ? hand1 : hand2;
             }
             case HandRank.FullHouse:
             {
                 var fullHouseTripletHand1 = hand1SortedValues.GroupBy(v => v).First(g => g.Count() == 3).Key;
                 var fullHouseTripletHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 3).Key;
 
-                if (fullHouseTripletHand1 != fullHouseTripletHand2)
-                    return fullHouseTripletHand1 > fullHouseTripletHand2 ? hand1 : hand2;
-
-                var fullHousePairHand1 = hand1SortedValues.GroupBy(v => v).First(g => g.Count() == 2).Key;
-                var fullHousePairHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 2).Key;
-
-                return fullHousePairHand1 > fullHousePairHand2 ? hand1 : hand2;
+                return fullHouseTripletHand1 > fullHouseTripletHand2 ? hand1 : hand2;
             }
             default:
                 return null;
