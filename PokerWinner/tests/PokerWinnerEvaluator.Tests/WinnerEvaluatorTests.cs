@@ -291,6 +291,33 @@ public class WinnerEvaluatorTests
         //Assert
         Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKindHigh));
     }
+    
+    [Test]
+    public void Test_GetWinner_FourOfAKind_vs_FourOfAKind_same_quad()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        var cardHandFourOfAKindHighKicker = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.C, CardValue.A)
+        ]);
+        var cardHandFourOfAKindLowKicker = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFourOfAKindHighKicker, cardHandFourOfAKindLowKicker);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKindHighKicker));
+    }
 
     [Test]
     public void Test_GetWinner_FourOfAKind_vs_FullHouse()
