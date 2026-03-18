@@ -1249,4 +1249,37 @@ public class WinnerEvaluatorTests
     }
 
     #endregion TwoPairs
+
+    #region Pair
+
+    [Test]
+    public void Test_GetWinner_Pair_vs_HighCard()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
+        
+        var cardHandPair = new CardHand([
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Q),
+            new Card(CardSuit.H, CardValue.Ten),
+            new Card(CardSuit.H, CardValue.Six),
+            new Card(CardSuit.C, CardValue.A)
+        ]);
+        
+        var cardHandHighCard = new CardHand([
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.D, CardValue.A),
+            new Card(CardSuit.S, CardValue.Three),
+            new Card(CardSuit.H, CardValue.Eight),
+            new Card(CardSuit.S, CardValue.Two)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandPair, cardHandHighCard);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandPair));
+    }
+
+    #endregion Pair
 }
