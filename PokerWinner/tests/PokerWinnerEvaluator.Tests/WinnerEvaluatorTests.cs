@@ -511,6 +511,33 @@ public class WinnerEvaluatorTests
     #endregion FourOfAKind
 
     #region FullHouse
+    
+    [Test]
+    public void Test_GetWinner_FullHouse_vs_FullHouse_different_triplet()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        var cardHandFullHouseHigh = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        var cardHandFullHouseLow = new CardHand([
+            new Card(CardSuit.C, CardValue.Four),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
+            new Card(CardSuit.C, CardValue.Four)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFullHouseHigh, cardHandFullHouseLow);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFullHouseHigh));
+    }
 
     [Test]
     public void Test_GetWinner_FullHouse_vs_Flush()
