@@ -51,6 +51,8 @@ public class WinnerEvaluator(IRankCalculator rankCalculator, ICardHandPairValida
                 if(hand1SortedValues[0] == hand2SortedValues[0])
                     return null;
                 return hand1SortedValues[0] > hand2SortedValues[0] ? hand1 : hand2;
+            case HandRank.ThreeOfAKind:
+                return hand1SortedValues[0] > hand2SortedValues[0] ? hand1 : hand2;
             default:
                 return null;
         }
