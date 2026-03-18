@@ -105,6 +105,18 @@ public class WinnerEvaluator(IRankCalculator rankCalculator, ICardHandPairValida
 
                 return null;
             }
+            case HandRank.HighCard:
+            {
+                for (var i = 0; i < hand1SortedValues.Count; i++)
+                {
+                    if (hand1SortedValues[i] == hand2SortedValues[i])
+                        continue;
+
+                    return hand1SortedValues[i] > hand2SortedValues[i] ? hand1 : hand2;
+                }
+
+                return null;
+            }
                 
             default:
                 return null;
