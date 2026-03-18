@@ -1011,6 +1011,35 @@ public class WinnerEvaluatorTests
         //Assert
         Assert.That(winningCardHand, Is.EqualTo(cardHandThreeOfAKind));
     }
+    
+    [Test]
+    public void Test_GetWinner_ThreeOfAKind_vs_Pair()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
+        
+        var cardHandThreeOfAKind = new CardHand([
+            new Card(CardSuit.C, CardValue.Four),
+            new Card(CardSuit.D, CardValue.Four),
+            new Card(CardSuit.H, CardValue.Three),
+            new Card(CardSuit.H, CardValue.Two),
+            new Card(CardSuit.S, CardValue.Four)
+        ]);
+        
+        var cardHandPair = new CardHand([
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Q),
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.H, CardValue.Six),
+            new Card(CardSuit.C, CardValue.A)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandThreeOfAKind, cardHandPair);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandThreeOfAKind));
+    }
 
     #endregion ThreeOfAKind
 }
