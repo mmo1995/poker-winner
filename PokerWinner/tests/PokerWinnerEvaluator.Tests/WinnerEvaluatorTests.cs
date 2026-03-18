@@ -1100,4 +1100,37 @@ public class WinnerEvaluatorTests
     }
 
     #endregion ThreeOfAKind
+
+    #region TwoPairs
+
+    [Test]
+    public void Test_GetWinner_TwoPairs_vs_Pair()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator(), new CardHandPairValidator());
+        
+        var cardHandTwoPairs = new CardHand([
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Nine),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Two)
+        ]);
+        
+        var cardHandPair = new CardHand([
+            new Card(CardSuit.C, CardValue.Six),
+            new Card(CardSuit.D, CardValue.Q),
+            new Card(CardSuit.H, CardValue.Ten),
+            new Card(CardSuit.H, CardValue.Six),
+            new Card(CardSuit.C, CardValue.A)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandPair, cardHandTwoPairs);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandTwoPairs));
+    }
+
+    #endregion TwoPairs
 }
