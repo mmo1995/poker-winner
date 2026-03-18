@@ -6,6 +6,8 @@ namespace PokerWinnerEvaluator.Tests;
 public class WinnerEvaluatorTests
 {
     private WinnerEvaluator? _winnerEvaluator;
+
+    #region StraightFlush
     
     [Test]
     public void Test_GetWinner_StraightFlush_vs_StraightFlush()
@@ -258,4 +260,37 @@ public class WinnerEvaluatorTests
         //Assert
         Assert.That(winningCardHand, Is.EqualTo(cardHandStraightFlush));
     }
+    
+    #endregion StraightFlush
+
+    #region FourOfAKind
+
+    [Test]
+    public void Test_GetWinner_FourOfAKind_vs_FullHouse()
+    {
+        //Arrange
+        _winnerEvaluator = new WinnerEvaluator(new RankCalculator());
+        var cardHandFourOfAKind = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+        var cardHandFullHouse = new CardHand([
+            new Card(CardSuit.C, CardValue.Five),
+            new Card(CardSuit.D, CardValue.Five),
+            new Card(CardSuit.H, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Nine),
+            new Card(CardSuit.C, CardValue.Nine)
+        ]);
+     
+        //Act
+        var winningCardHand = _winnerEvaluator.GetWinner(cardHandFourOfAKind, cardHandFullHouse);
+
+        //Assert
+        Assert.That(winningCardHand, Is.EqualTo(cardHandFourOfAKind));
+    }
+
+    #endregion FourOfAKind
 }
