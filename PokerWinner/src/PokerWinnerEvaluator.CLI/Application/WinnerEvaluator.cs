@@ -12,6 +12,16 @@ public class WinnerEvaluator(IRankCalculator rankCalculator): IWinnerEvaluator
 
         if (hand1Rank != hand2Rank)
             return hand1Rank > hand2Rank ? hand1 : hand2;
-        return null;
+
+        var hand1SortedValues = hand1Values.OrderByDescending(v => v).ToList();
+        var hand2SortedValues = hand2Values.OrderByDescending(v => v).ToList();
+        
+        switch (hand1Rank)
+        {
+            case HandRank.StraightFlush:
+                return hand1SortedValues[0] > hand2SortedValues[0] ? hand1 : hand2;
+            default:
+                return null;
+        }
     }
 }
