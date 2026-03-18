@@ -5,7 +5,7 @@ namespace PokerWinnerEvaluator.CLI.Application;
 
 public class WinnerEvaluator(IRankCalculator rankCalculator, ICardHandPairValidator cardHandPairValidator): IWinnerEvaluator
 {
-    public CardHand GetWinner(CardHand hand1, CardHand hand2)
+    public CardHand? GetWinner(CardHand hand1, CardHand hand2)
     {
         cardHandPairValidator.Validate(hand1, hand2);
         
@@ -35,6 +35,17 @@ public class WinnerEvaluator(IRankCalculator rankCalculator, ICardHandPairValida
                 var fullHouseTripletHand2 = hand2SortedValues.GroupBy(v => v).First(g => g.Count() == 3).Key;
 
                 return fullHouseTripletHand1 > fullHouseTripletHand2 ? hand1 : hand2;
+            }
+            case HandRank.Flush:
+            {
+                for (var i = 0; i < hand1SortedValues.Count; i++)
+                {
+                    if (hand1SortedValues[i] == hand2SortedValues[i])
+                        continue;
+
+                    return hand1SortedValues[i] > hand2SortedValues[i] ? hand1 : hand2;
+                }
+                return null;
             }
             default:
                 return null;

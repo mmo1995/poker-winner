@@ -4,5 +4,5 @@ namespace PokerWinnerEvaluator.CLI.Contracts;
 
 public interface IWinnerEvaluator
 {
-    public CardHand GetWinner(CardHand hand1, CardHand hand2);
+    public CardHand? GetWinner(CardHand hand1, CardHand hand2);
 }
