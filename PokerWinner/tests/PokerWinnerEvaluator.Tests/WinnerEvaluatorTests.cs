@@ -110,9 +110,9 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Three)
         ]);
      
         //Act
@@ -168,7 +168,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.C, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Five)
         ]);
      
         //Act
@@ -361,9 +361,9 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
      
         //Act
@@ -417,7 +417,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.C, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Five)
         ]);
      
         //Act
@@ -529,7 +529,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Five),
             new Card(CardSuit.S, CardValue.Four),
-            new Card(CardSuit.C, CardValue.Four)
+            new Card(CardSuit.H, CardValue.Four)
         ]);
      
         //Act
@@ -581,9 +581,9 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
      
         //Act
@@ -637,7 +637,7 @@ public class WinnerEvaluatorTests
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.C, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Five)
         ]);
      
         //Act
@@ -740,9 +740,9 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
         var cardHandStraight = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
@@ -767,16 +767,16 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
         var cardHandThreeOfAKind = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.C, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Five)
         ]);
      
         //Act
@@ -794,9 +794,9 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
         var cardHandTwoPairs = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
@@ -821,9 +821,9 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
         var cardHandPair = new CardHand([
             new Card(CardSuit.C, CardValue.Five),
@@ -848,9 +848,9 @@ public class WinnerEvaluatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
         var cardHandHighCard = new CardHand([
             new Card(CardSuit.C, CardValue.Five),

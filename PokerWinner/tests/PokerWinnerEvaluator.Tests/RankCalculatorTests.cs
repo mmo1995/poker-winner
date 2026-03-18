@@ -91,9 +91,9 @@ public class RankCalculatorTests
         var cardHandFlush = new CardHand([
             new Card(CardSuit.S, CardValue.Two),
             new Card(CardSuit.S, CardValue.Five),
-            new Card(CardSuit.S, CardValue.Five),
+            new Card(CardSuit.S, CardValue.Four),
             new Card(CardSuit.S, CardValue.Nine),
-            new Card(CardSuit.S, CardValue.Nine)
+            new Card(CardSuit.S, CardValue.Seven)
         ]);
         
         //Act
@@ -149,7 +149,7 @@ public class RankCalculatorTests
             new Card(CardSuit.D, CardValue.Five),
             new Card(CardSuit.H, CardValue.Three),
             new Card(CardSuit.S, CardValue.Two),
-            new Card(CardSuit.C, CardValue.Five)
+            new Card(CardSuit.S, CardValue.Five)
         ]);
         
         //Act
